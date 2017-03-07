@@ -21,16 +21,32 @@ const populateEmployees = () => {
     )`)
   })
 }
-populateEmployees()
+// populateEmployees()
 
 
 db.run("CREATE TABLE IF NOT EXISTS employees (id INT, first TEXT, last TEXT, salary NUMBER(7, 2), weapon TEXT)");
 
+// .get is not a very helpful method
+// db.get(`SELECT * FROM employees`, (err, row) => {
+//   console.log(row)
+// })
+
+
+// db.all() first runs the query
+// then calls a callback function which it passes all resulting rows
+// db.all("SELECT * FROM employees", (err, allRows) => {
+//   // allRows is an array containing each row from the query
+//   allRows.forEach(({ id, first, last, weapon, salary}) => {  // destructuring!!
+//     console.log(`${id} ${first} ${last}. Weapon of choice: ${weapon}. Salary: ${salary}`)
+//   })
+// });
 
 
 
 
 
+
+// _________example inserts________
 // db.run("INSERT INTO employees (id, first, last, salary) VALUES (1, 'Michael', 'Scott', 60000)");
 // db.run("INSERT INTO employees VALUES (2, 'Jim', 'Halpert', 45000)");
 // db.run(`INSERT INTO employees VALUES (3, "Billy", "Conolly", 100000)`)
