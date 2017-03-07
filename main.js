@@ -8,12 +8,23 @@ const dropEmployees = () => {   // funtion to clear table
 }
 // dropEmployees()
 
-const populateEmployees () => {
+const populateEmployees = () => {
+  const { list } = require('./employees.json')  // pulling employees from neighboring json file
 
-
+  list.forEach(each => {
+    db.run(`INSERT INTO employees VALUES (
+      ${each.id},
+      "${each.firstName}",
+      "${each.lastName}",
+      ${each.salary},
+      "${each.weapon}"
+    )`)
+  })
 }
+populateEmployees()
 
-db.run("CREATE TABLE IF NOT EXISTS employees (id INT, first TEXT, last TEXT, salary NUMBER(7, 2))");
+
+db.run("CREATE TABLE IF NOT EXISTS employees (id INT, first TEXT, last TEXT, salary NUMBER(7, 2), weapon TEXT)");
 
 
 
