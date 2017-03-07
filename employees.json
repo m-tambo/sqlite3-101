@@ -1,0 +1,10 @@
+{
+  "list": [
+    { "id": "1", "firstName": "Dwight", "lastName": "Schrute", "salary": 45000, "weapon": "Stapler" },
+    { "id": "2", "firstName": "Holly", "lastName": "Fax", "salary": 47000, "weapon": "Letter opener" },
+    { "id": "3", "firstName": "Jim", "lastName": "Halpert", "salary": 55000, "weapon": "Slap hands" },
+    { "id": "4", "firstName": "Pam", "lastName": "Beesly", "salary": 52000, "weapon": "Spork" },
+    { "id": "5", "firstName": "Michael", "lastName": "Scott", "salary": 60000, "weapon": "Trident" },
+    { "id": "6", "firstName": "Stanley", "lastName": "Hudson", "salary": 55000, "weapon": "Club" }
+  ]
+}
