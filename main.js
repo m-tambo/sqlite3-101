@@ -26,14 +26,14 @@ const populateEmployees = () => {
 
 db.run("CREATE TABLE IF NOT EXISTS employees (id INT, first TEXT, last TEXT, salary NUMBER(7, 2), weapon TEXT)");
 
-// .get is not a very helpful method
+// // .get is not a very helpful method
 // db.get(`SELECT * FROM employees`, (err, row) => {
 //   console.log(row)
 // })
 
 
-// db.all() first runs the query
-// then calls a callback function which it passes all resulting rows
+//   // db.all() first runs the query
+//   // then calls a callback function which it passes all resulting rows
 // db.all("SELECT * FROM employees", (err, allRows) => {
 //   // allRows is an array containing each row from the query
 //   allRows.forEach(({ id, first, last, weapon, salary}) => {  // destructuring!!
@@ -42,8 +42,50 @@ db.run("CREATE TABLE IF NOT EXISTS employees (id INT, first TEXT, last TEXT, sal
 // });
 
 
+// // similar to db.all, but better for large databases
+// // can use destructuring in the callback function
+// db.each(`SELECT * FROM employees`, (err, { id, first, last, weapon, salary}) => {
+//   console.log(`${id} ${first} ${last}. Weapon of choice: ${weapon}. Salary: ${salary}`)
+// });
 
 
+// ________challenge_____
+  // 1. sort all records alphabetically by first name
+// db.all("SELECT * FROM employees", (err, allRows) => {
+//   let newArray = []
+//   allRows.forEach((employee) => {
+//     if (employee.salary > 50000) {
+//       newArray.push(employee)
+//     }
+//   })
+//   console.log(newArray)
+// })
+  // 2. create new array of all employees that make more than 50000
+  // 3. using the new array, create an array of each persons first, last, and salary
+
+//________solution from dom_________
+// db.all("SELECT * FROM employees", (err, allRows) => {
+//   const result = allRows.sort((a, b) => {
+//     return (a.first > b.first) ? 1 : -1;
+//   })
+//   .filter(each => each.salary > 50000)
+//   .map(each => `${each.first} ${each.last}. Salary: ${each.salary}`)
+
+//   console.log(result)
+// })
+
+// _______solution using sql_________
+db.all(`SELECT * FROM employees
+        WHERE salary > 50000
+        GROUP BY first`,
+        (err, allRows) => {
+          if (err) {
+            console.log(err)
+          }
+          else {
+            console.log(allRows)
+          }
+})
 
 
 // _________example inserts________
